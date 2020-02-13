@@ -1,27 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import Hello from './Hello'
-import Wrapper from './Wrapper'
-import GetUserInfo from './GetUserInfo';
-import Counter from './Counter';
-import InputSample from './InputSample'
+import React, { useRef } from 'react';
+import UserList from './UserList';
+import CreateUser from './CreateUser';
 
 function App() {
+  const users = [
+    {
+      id: 1,
+      username: 'jgam',
+      email: 'jgam@nd.edu'
+    },
+    {
+      id: 2,
+      username: 'tester',
+      email: 'tester@example.com'
+    },
+    {
+      id: 3,
+      username: 'Liz',
+      email: 'liz@example.com'
+    }
+  ];
 
-  
+  const nextId = useRef(4);
+  const onCreate = () => {
+    setInputs({
+      username: '',
+      email: ''
+    });
+    nextId.current += 1;
+  };
   return (
-    <div>
-      <Wrapper>
-        <Hello name="react" color="red"/>
-        <Hello color="pink"/>
-      </Wrapper>
-      <Counter />
-      <GetUserInfo />
-      <InputSample />
-
-      
-    </div>
+    <>
+      <CreateUser />
+      <UserList users={users} />
+    </>
   );
 }
 export default App;
