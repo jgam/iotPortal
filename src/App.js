@@ -1,6 +1,11 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useMemo, useCallback } from 'react';
 import UserList from './UserList';
 import CreateUser from './CreateUser';
+
+function countActiveUsers(users){
+  console.log('counting the number of users...');
+  return users.filter(user=> user.active).length;
+}
 
 function App() {
   const [inputs, setInputs] = useState({
@@ -8,13 +13,15 @@ function App() {
     email: ''
   });
   const { username, email } = inputs;
-  const onChange = e => {
+  const onChange = useCallback(
+    e => {
     const { name, value } = e.target;
     setInputs({
       ...inputs,
       [name]: value
     });
-  };
+  }, [inputs]
+  );
   const [users, setUsers] = useState([
     {
       id: 1,
@@ -64,6 +71,10 @@ function App() {
     });
     nextId.current += 1;
   };
+
+  const count = useMemo(() => countActiveUsers(users), [users]);//memoization
+  //if deps doesn't change, then we dont need to call countActiveUsers, if changed, then call the function
+  //to rerender
   return (
     <>
       <CreateUser
@@ -73,6 +84,7 @@ function App() {
         onCreate={onCreate}
       />
       <UserList users={users} onRemove={onRemove} onToggle={onToggle}/>
+      <div> active users: {count}</div>
     </>
   );
 }

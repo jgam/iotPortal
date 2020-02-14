@@ -1,6 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 function User({user, onRemove, onToggle}){
+  useEffect(()=>{
+    console.log('component shown on the screen');
+    return() => {
+      console.log('component dispapeared on the screen');
+    };
+  }, [user]);
   return (
     <div>
       <b
