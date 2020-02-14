@@ -47,17 +47,22 @@ function App() {
 
   const nextId = useRef(4);
 
-  const onToggle = id => {
+  const onToggle = useCallback(
+    id => {
     console.log('onToggle!!');
     setUsers(
       users.map(user =>
         user.id === id ? {...user, active: !user.active} : user)
     );
-  };
-  const onRemove = id => {
+  },[users]);
+
+  const onRemove = useCallback(
+    id => {
     setUsers(users.filter(user => user.id !== id));
-  }
-  const onCreate = () => {
+  },[users])
+  
+  const onCreate = useCallback(
+    () => {
     const user = {
       id: nextId.current,
       username,
@@ -70,7 +75,7 @@ function App() {
       email: ''
     });
     nextId.current += 1;
-  };
+  },[users]);
 
   const count = useMemo(() => countActiveUsers(users), [users]);//memoization
   //if deps doesn't change, then we dont need to call countActiveUsers, if changed, then call the function

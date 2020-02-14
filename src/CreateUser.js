@@ -20,4 +20,4 @@ function CreateUser({ username, email, onChange, onCreate }) {
   );
 }
 
-export default CreateUser;
+export default React.memo(CreateUser);//if component's props didn't change, then don't render again
