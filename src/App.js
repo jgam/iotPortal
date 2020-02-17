@@ -1,6 +1,7 @@
 import React, { useRef, useState, useMemo, useCallback } from 'react';
 import UserList from './UserList';
 import CreateUser from './CreateUser';
+import GetUserInfo from './GetUserInfo';
 
 function countActiveUsers(users){
   console.log('counting the number of users...');
@@ -60,7 +61,7 @@ function App() {
     id => {
     setUsers(users.filter(user => user.id !== id));
   },[users])
-  
+
   const onCreate = useCallback(
     () => {
     const user = {
@@ -80,6 +81,7 @@ function App() {
   const count = useMemo(() => countActiveUsers(users), [users]);//memoization
   //if deps doesn't change, then we dont need to call countActiveUsers, if changed, then call the function
   //to rerender
+  /* 
   return (
     <>
       <CreateUser
@@ -92,6 +94,14 @@ function App() {
       <div> active users: {count}</div>
     </>
   );
+  */
+
+  return (
+    <div>
+      hello
+      <GetUserInfo />
+    </div>
+  )
 }
 
 export default App;
