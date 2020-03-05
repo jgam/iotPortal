@@ -2,7 +2,7 @@
   "name": "iotportal",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://stg.app.rakuten.co.jp/engine/token",
+  "proxy": "http://stg.app.rakuten.co.jp/engine/api",
   "dependencies": {
     "@rakuten-rex/button": "1.0.2",
     "@rakuten-rex/sign-up-mobile": "^1.0.0",

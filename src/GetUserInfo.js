@@ -3,7 +3,7 @@ import {render} from 'react-dom'
 import axios from 'axios'
 
 
-function GetUserInfo(){
+async function GetUserInfo(){
     /*
     axios.post('http://stg.app.rakuten.co.jp/engine/token?client_id=iot_pet_app&client_secret=dCkhfdFPgZd626ldN7oEv9p5XHG0r9lLEcR3Q-5qurL4&grant_type=password&scope=memberinfo_read_safebulk,memberinfo_read_details_safe,memberinfo_read_name,365days@Refresh,openid,pnp_ios_register,openid profile,idinfo_read_encrypted_easyid,pnp_android_register,30days@Access&username=test-iot123@example.com&password=123456789',
     {
@@ -23,7 +23,7 @@ function GetUserInfo(){
 
    //axios.defaults.headers.common['Authorization'] = 'Bearer ("Access-Control-Allow-Origin", "*")';
 
-    
+    /*
     // Make a request for a user with a given ID
     axios.post('http://stg.app.rakuten.co.jp/engine/token?client_id=iot_pet_app&client_secret=dCkhfdFPgZd626ldN7oEv9p5XHG0r9lLEcR3Q-5qurL4&grant_type=password&scope=memberinfo_read_safebulk,memberinfo_read_details_safe,memberinfo_read_name,365days@Refresh,openid,pnp_ios_register,openid profile,idinfo_read_encrypted_easyid,pnp_android_register,30days@Access&username=test-iot123@example.com&password=123456789')
       .then(function (response) {
@@ -47,7 +47,25 @@ function GetUserInfo(){
       .then(function () {
         // always executed
       });
-    
+    */
+   var obj = {
+    link: 'https://stg.app.rakuten.co.jp/engine/api/MemberInformation/GetUserInfoSafe/20170926',
+    object:{
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'authValue'
+      }
+    }
+  }
+  //mehdi
+  const url = 'https://stg.app.rakuten.co.jp/engine/api/MemberInformation/GetUserInfoSafe/20170926?access_token=IgABNGKBGYDluIS80dcegTMbWLI4PCQHf1jST4kMk02ihqPHaJS'
+  let res = await axios.get(url);
+  console.log(JSON.stringify(res.data));
+
+
+  //https://stg.app.rakuten.co.jp/engine/api/MemberInformation/GetUserInfoSafe/20170926?access_token=xxxx
     //render(){
         return (
             <div> getToken

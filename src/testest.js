@@ -1,24 +1,12 @@
 import React from "react";
 import axios from "axios";
-import Auth from './Auth';
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  Link
-} from 'react-router-dom';
 
 export default class App extends React.Component {
-
     state = {
-       users: [],
-       userInfo: {}
+       users: []
     };
-
     componentDidMount() {
-       this.getUsers().then(result => this.setState({
-         userInfo:result
-       }));
+       this.getUsers();
     }
 
     getUsers = async () => {
@@ -27,24 +15,14 @@ export default class App extends React.Component {
       console.log(JSON.stringify(params.data))
      var url = 'https://stg.app.rakuten.co.jp/engine/api/MemberInformation/GetUserInfoSafe/20170926?access_token=' + params.data.access_token;
      let res = await axios.get(url);
-     console.log(JSON.stringify(res.data));//{"openID":"mehdi"...}
-     //Promise.resolve();// this one resoles the promise
-     return res.data;
+     console.log(JSON.stringify(res.data));
 	}
     
     render() {
        return (
-          <div> Welcome to RMI iot portal boiz!
-              <br></br>
+          <div> test
               <a href="https://stg.grp03.id.rakuten.co.jp/rms/nid/login?service_id=i103&client_id=iot_pet_app&redirect_uri=https%3A%2F%2Fstg-gcp.iot.mobile.rakuten.co.jp/auth&scope=memberinfo_read_safebulk%2Cmemberinfo_read_details_safe%2Cmemberinfo_read_name%2C365days%40Refresh%2Copenid%2Cpnp_ios_register%2Copenid&contact_info_required=false&rae_service_id=">go to Login</a>
-              <Router>
-                <Link to="/auth"></Link>
-                  <Switch>
-                    <Route path="/auth">
-                      <Auth infoUsers={this.state.userInfo}/>
-                    </Route>
-                </Switch>
-              </Router>
+      
           </div>
        );
      }
