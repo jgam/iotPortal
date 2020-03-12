@@ -8,6 +8,8 @@ function Auth({infoUsers}) {
     //console.log(infoUsers.resolve("openID"));
     var infoKeys = Object.keys(infoUsers)
 
+    //here I have to grab auth parameter
+
    
     return (
       <div>
