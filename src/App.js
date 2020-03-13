@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import Auth from './Auth';
 import {
   BrowserRouter as Router,
@@ -7,12 +6,14 @@ import {
   Switch,
   Link
 } from 'react-router-dom';
+import Userinfo from './Userinfo'
 
 export default class App extends React.Component {
 
     state = {
        users: [],
-       userInfo: {}
+       userInfo: {},
+       loggedIn : false,
     };
     /*
     componentDidMount() {
@@ -37,15 +38,28 @@ export default class App extends React.Component {
   
     
     render() {
+      console.log('im in app .js');
+
        return (
           <div> Welcome to RMI iot portal boiz!
               <br></br>
               <a href="https://stg.grp03.id.rakuten.co.jp/rms/nid/login?service_id=i103&client_id=iot_pet_app&redirect_uri=https%3A%2F%2Fstg-gcp.iot.mobile.rakuten.co.jp/auth&scope=memberinfo_read_safebulk%2Cmemberinfo_read_details_safe%2Cmemberinfo_read_name%2C365days%40Refresh%2Copenid%2Cpnp_ios_register%2Copenid&contact_info_required=false&rae_service_id=">go to Login</a>
+              
+              
               <Router>
                 <Link to="/auth"></Link>
                   <Switch>
                     <Route path="/auth">
                       <Auth infoUsers={this.state.userInfo}/>
+                    </Route>
+                </Switch>
+              </Router>
+
+              <Router>
+                <Link to="/userInfo"></Link>
+                  <Switch>
+                    <Route path="/userInfo" component={Userinfo}>
+                      <Userinfo/>
                     </Route>
                 </Switch>
               </Router>

@@ -4,8 +4,10 @@ import {
   BrowserRouter as Router,
   Route,
   Switch,
-  Link
+  Link,
+  Redirect
 } from 'react-router-dom';
+import Userinfo from './Userinfo'
 
 function Auth({infoUsers}) {
     // get props print them out here
@@ -41,6 +43,8 @@ function Auth({infoUsers}) {
   var newinfoKeys;
   newinfoKeys = Object.keys(newinfoUsers)
 
+  //here u should update the state
+
    
     return (
       <div>
@@ -51,10 +55,10 @@ function Auth({infoUsers}) {
           }
         })}
         <Router>
-          <Link to="/auth"></Link>
+          <Link to="/userInfo"></Link>
             <Switch>
-              <Route path="/auth">
-                <Auth infoUsers={this.state.userInfo}/>
+              <Route path="/userInfo" component={Userinfo}>
+                <Userinfo/>
               </Route>
           </Switch>
         </Router>
